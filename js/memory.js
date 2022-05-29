@@ -7,9 +7,14 @@ let arrayComparison = [];
 
 document.body.onload = startGame();
 
+
 // mi serviranno alcune variabili 1. interval 2. una agganciata alla classe find 
 // 3. una agganciata al'id modal 4. una agganciata alla classe timer
+function startGame() {
+    resetTimer();
+    displayIcon();
 
+}
 
 //una funzione che serve a mescolare in modo random gli elementi dell'array che viene passato 
 // (l'array contiene le icone degli animali)
@@ -27,7 +32,10 @@ function shuffle(a) {
     return a;
 }
 // una funzione che rimuove la classe active e chiama la funzione startGame()
-
+function playAgain() {
+    resetModal();
+    startGame();
+}
 // la funzione startGame che pulisce il timer, dichiara un array vuoto, mescola casualmente l'array degli animali
 // (var arrayShuffle = shuffle(arrayAnimali);), aggancia il contenitore con id griglia, 
 // pulisce tutti gli elementi che eventualmente contiene
@@ -39,18 +47,7 @@ function shuffle(a) {
 function displayIcon() {
     var icon = document.getElementsByClassName("icon");
     var icons = [...icon];
-
-    /*
-    var icon = document.getElementsByClassName("icon");
-    var icons = [...icon];
-    è uguale a 
-    var icons = document.getElementsByClassName("icon");
-    //var icons = [...icon];
-    è un operatore che serve per passare un array come argomento:
-    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax 
-    https://www.tutorialspoint.com/es6/es6_operators.htm (cerca spread nella pagina)
-    */
-
+    
     //mette/toglie la classe show
     this.classList.toggle("show");
     //aggiunge l'oggetto su cui ha cliccato all'array del confronto
@@ -86,7 +83,40 @@ function displayIcon() {
 }
 
 //una funzione che viene mostrata alla fine quando sono tutte le risposte esatte
-
+function showModal() {
+    document.querySelector("#modal").style.display = "initial";
+}
 // una funzione che nasconde la modale alla fine e riavvia il gioco
-
+function resetModal() {
+    document.querySelector("#modal").style.display = "none";
+}
 // una funzione che calcola il tempo e aggiorna il contenitore sotto
+var sec = 0;
+var min = 0;
+var t;
+
+function secondo(){
+    sec++;
+    if (sec >= 60) {
+        sec = 0;
+        min++;
+    }
+}
+function tempo() {
+    secondo();
+    document.querySelector("#timer").textContent = "Tempo: " + min + " min " + sec + " sec";
+    timer();
+}
+function timer() {
+    t = setTimeout(tempo, 1000);
+}
+function stopTimer() {
+    clearTimeout(t);
+}
+function resetTimer() {
+    sec = 0;
+    min = 0;
+    document.querySelector("#timer").textContent = "Tempo: " + min + " min " + sec + " sec";
+    stopTimer();
+    timer();
+}
