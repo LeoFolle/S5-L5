@@ -45,16 +45,19 @@ function startGame() {
     let i=0;
     while(i<24) {
         const el = document.createElement('div');
-        el.classList.add('icon');
-        el.textContent = arrayShuffle[i];
+        grid[i] = el;
+        grid[i].classList.add('icon');
+        grid[i].textContent = arrayShuffle[i];
         const cont = document.getElementById('griglia');
-        el.setAttribute("onclick","displayIcon();")
-        cont.appendChild(el);
+        grid[i].setAttribute("onclick","displayIcon();")
+        
+        cont.appendChild(grid[i]);
         i++;
     }
 
 }
 
+const cards = document.querySelectorAll('icon');
 
 //questa funzione che è stata data non funziona correttamente
 //mi hanno detto di non cambiare le funzioni già date
