@@ -10,11 +10,6 @@ document.body.onload = startGame();
 
 // mi serviranno alcune variabili 1. interval 2. una agganciata alla classe find 
 // 3. una agganciata al'id modal 4. una agganciata alla classe timer
-function startGame() {
-    resetTimer();
-    displayIcon();
-
-}
 
 //una funzione che serve a mescolare in modo random gli elementi dell'array che viene passato 
 // (l'array contiene le icone degli animali)
@@ -41,27 +36,45 @@ function playAgain() {
 // pulisce tutti gli elementi che eventualmente contiene
 // poi fa ciclo per creare i 24 div child -> aggiunge la class e l'elemento dell'array in base all'indice progressivo
 // chiama la funzione timer e associa a tutti gli elementi (div) di classe icon l'evento click e le due funzioni definit sotto
+function startGame() {
+    resetTimer();
+    let grid = [];
+    var arrayShuffle = shuffle(arrayAnimali);
+    let griglia = document.getElementById("griglia");
+    let i=0;
+    while(i<24) {
+        const el = document.createElement('div');
+        el.classList.add('icon');
+        el.textContent = arrayShuffle[i];
+        const cont = document.getElementById('griglia');
+        el.setAttribute("onclick","displayIcon();")
+        cont.appendChild(el);
+        i++;
+    }
 
+}
 
 
 function displayIcon() {
-    var icon = document.getElementsByClassName("icon");
-    var icons = [...icon];
     
+    var icon = document.querySelectorAll('.icon');
+    var icons = [...icon];
+
     //mette/toglie la classe show
     this.classList.toggle("show");
     //aggiunge l'oggetto su cui ha cliccato all'array del confronto
     arrayComparison.push(this);
 
     var len = arrayComparison.length;
-    //se nel confronto ci sono due elementi
+    //se nel confronto ci sono due elementi 
     if (len === 2) {
         //se sono uguali aggiunge la classe find
         if (arrayComparison[0].innerHTML === arrayComparison[1].innerHTML) {
             arrayComparison[0].classList.add("find", "disabled");
             arrayComparison[1].classList.add("find", "disabled");
             arrayComparison = [];
-        } else {
+        } 
+        else {
             //altrimenti (ha sbagliato) aggiunge solo la classe disabled
             icons.forEach(function(item) {
                 item.classList.add('disabled');
