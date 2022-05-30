@@ -38,6 +38,7 @@ function playAgain() {
 // chiama la funzione timer e associa a tutti gli elementi (div) di classe icon l'evento click e le due funzioni definit sotto
 function startGame() {
     resetTimer();
+    document.getElementById("griglia").innerHTML = "";
     let grid = [];
     var arrayShuffle = shuffle(arrayAnimali);
     let griglia = document.getElementById("griglia");

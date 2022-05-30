@@ -19,6 +19,7 @@ display: flex;
 height: 100%;
 max-width: 100%;
 flex-wrap: wrap;
+justify-content: center;
 }
 
 .show {
@@ -32,7 +33,9 @@ flex-wrap: wrap;
     border: 1px solid #3889c4;
     border-radius: 10px;
 }
+#grid {
 
+}
 .timer {
     padding: 10px 0;
 }
