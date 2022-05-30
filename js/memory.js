@@ -55,11 +55,12 @@ function startGame() {
 }
 
 
+//questa funzione che è stata data non funziona correttamente
+//mi hanno detto di non cambiare le funzioni già date
 function displayIcon() {
-    
-    var icon = document.querySelectorAll('.icon');
+    var icon = document.getElementsByClassName("icon");
     var icons = [...icon];
-
+    
     //mette/toglie la classe show
     this.classList.toggle("show");
     //aggiunge l'oggetto su cui ha cliccato all'array del confronto
